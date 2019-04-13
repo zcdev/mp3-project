@@ -1,0 +1,36 @@
+.card {
+  margin: 2rem 1rem;
+  position: relative;
+  max-width: 400px;
+  box-shadow: 0 3px 6px #333, 0 3px 6px #333;
+  border-radius: 2%;
+}
+
+.card > .img-container > .photo {
+  width: 100%;
+  border-radius: 2%;
+  display:block;
+}
+
+.button {
+  z-index: 3;
+  float: left;
+  width: 15%;
+  margin-top:0.2rem;
+}
+
+.img-container div {
+  position: absolute;
+  width: 100%;
+  background: rgba(0,0,0,0.6);
+  z-index: 2;
+  padding: 0.5rem 1rem;
+  bottom: 10%;
+}
+
+.img-container div span {
+  font-size: 1.1rem;
+  color: #fff;
+  float: right;
+  line-height: 3;
+}
