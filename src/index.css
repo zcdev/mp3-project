@@ -57,7 +57,7 @@ p {
 .button img {
   z-index: 3;
   float: left;
-  width: 15%;
+  width: 52px;
 }
 
 @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
