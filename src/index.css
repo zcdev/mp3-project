@@ -63,9 +63,15 @@ p {
 @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
 
 @media only screen and (max-width: 450px) {
-  .container div span { font-size: 0.7rem;}
+  .container div span { font-size: 0.8rem; line-height:1; margin: 1rem 0;}
   footer p {
    font-size: 0.6rem;
  }
+ .button img {
+  padding-top: 0.15rem;
+  z-index: 3;
+  float: left;
+  width: 40px;
+}
 }
 
