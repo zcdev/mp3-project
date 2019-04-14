@@ -68,10 +68,9 @@ p {
    font-size: 0.6rem;
  }
  .button img {
-  padding-top: 0.15rem;
   z-index: 3;
   float: left;
-  width: 40px;
+  width: 44px;
 }
 }
 
