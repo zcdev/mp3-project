@@ -1,36 +1,37 @@
 [
   {
-    "id": 1,
+    "id": 0,
     "image": "images/bird.jpg",
     "song": "songs/fly.mp3",
-    "title": "Fly"
+    "title": "Fly",
+    "spin": "false"
   },
   {
-    "id": 2,
+    "id": 1,
     "image": "images/world.jpg",
     "song": "songs/closer.mp3",
     "title": "Closer"
   },
   {
-    "id": 3,
+    "id": 2,
     "image": "images/forever.jpg",
     "song": "songs/it-will-never-end.mp3",
     "title": "It Will Never End"
   },
   {
-    "id": 4,
+    "id": 3,
     "image": "images/rain.jpg",
     "song": "songs/alone.mp3",
     "title": "Alone"
   },
   {
-    "id": 5,
+    "id": 4,
     "image": "images/door.jpg",
     "song": "songs/open-door.mp3",
     "title": "There Will Always Be An Open Door"
   },
   {
-    "id": 6,
+    "id": 5,
     "image": "images/hello.jpg",
     "song": "songs/hello.mp3",
     "title": "Hello, Hello, Hello"

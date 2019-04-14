@@ -20,9 +20,52 @@ p {
   margin: 0;
 }
 
+.card {
+  margin: 2rem 1rem;
+  position: relative;
+  max-width: 400px;
+  box-shadow: 0 3px 6px #333, 0 3px 6px #333;
+  border-radius: 2%;
+}
+
+.card > .container > .photo {
+  width: 100%;
+  border-radius: 2%;
+  display:block;
+}
+
+.container div {
+  position: absolute;
+  width: 100%;
+  background: rgba(0,0,0,0.6);
+  z-index: 2;
+  padding: 0.5rem 1rem;
+  bottom: 10%;
+}
+
+.container div span {
+  font-size: 1.1rem;
+  color: #fff;
+  float: right;
+  line-height: 3;
+}
+
+.spin {
+  animation:spin 1s linear infinite;
+}
+
+.button img {
+  z-index: 3;
+  float: left;
+  width: 15%;
+}
+
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
 @media only screen and (max-width: 450px) {
   .img-container div span { font-size: 0.8rem;}
   footer p {
    font-size: 0.6rem;
  }
 }
+
