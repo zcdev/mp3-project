@@ -3,8 +3,7 @@
     "id": 0,
     "image": "images/bird.jpg",
     "song": "songs/fly.mp3",
-    "title": "Fly",
-    "spin": "false"
+    "title": "Fly"
   },
   {
     "id": 1,
