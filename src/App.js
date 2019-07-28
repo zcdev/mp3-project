@@ -7,7 +7,6 @@ let currentTime;
 let duration;
 let spin = "";
 
-
 class App extends Component {
 
     state = {
