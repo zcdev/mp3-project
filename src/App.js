@@ -19,14 +19,6 @@ class App extends Component {
 
         music.src = Songs[id].song;
 
-
-
-
-
-
-
-
-
         if (this.state.clicked.includes(id)) {
 
             this.setState({
@@ -47,7 +39,6 @@ class App extends Component {
         }
 
     };
-
 
     clickedButton = id => {
 
@@ -88,15 +79,15 @@ class App extends Component {
     render() {
         return (
             <Wrapper>
-        {this.state.Songs.map((song, id) => (
-          <div className="card" onClick={() => this.playSong(id)} id={song.id} key={song.id}>
-            <div className="container">
-              <img className="photo" src={song.image} alt={song.title} title={song.title} />
-              <div className="button"><img className={this.clickedButton(id)} src="./images/play-pause.png" alt="play/pause"/><span>{song.title}</span></div>
-            </div>
-        </div>
-        ))}
-      </Wrapper>
+                {this.state.Songs.map((song, id) => (
+                  <div className="card" onClick={() => this.playSong(id)} id={song.id} key={song.id}>
+                    <div className="container">
+                      <img className="photo" src={song.image} alt={song.title} title={song.title} />
+                      <div className="button"><img className={this.clickedButton(id)} src="./images/play-pause.png" alt="play/pause"/><span>{song.title}</span></div>
+                    </div>
+                </div>
+                ))}
+            </Wrapper>
         );
     }
 }
