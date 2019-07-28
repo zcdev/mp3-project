@@ -48,8 +48,8 @@ class App extends Component {
 
         let getSongLength = () => {
             currentTime = music.currentTime.toFixed(2);
-            console.log("duration: " + duration);
-            console.log("currentTime: " + currentTime);
+            // console.log("duration: " + duration);
+            // console.log("currentTime: " + currentTime);
             if (currentTime === duration) {
                 this.setState({
                     clicked: []
