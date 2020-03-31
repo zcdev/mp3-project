@@ -3,76 +3,93 @@ import React, { Component } from "react";
 import Wrapper from "./components/Wrapper";
 import Songs from "./Playlist.json";
 const music = new Audio('songs/fly.mp3', 'songs/closer.mp3', 'songs/it-will-never-end.mp3', 'songs/alone.mp3', 'songs/open-door', 'music/hello.mp3');
-let currentTime;
-let duration;
-let spin = "";
-
 class App extends Component {
 
-    state = {
-        Songs,
-        clicked: []
-    };
+    constructor() {
+        super()
+        this.interval = null;
+        this.state = {
+            Songs,
+            isPlaying: false,
+            isPaused: true,
+            currentTime: 0,
+            timestamp: 0,
+            duration: 0,
+            progress: 0,
+            clicked: [],
+            id: []
+        };
+
+        music.addEventListener("canplaythrough", () => {
+            this.setState({
+                duration: music.duration
+            });
+        });
+    }
 
     playSong = id => {
-
+        let currentTime = music.currentTime.toFixed(2);
         music.src = Songs[id].song;
-
-        if (this.state.clicked.includes(id)) {
-
-            this.setState({
-                clicked: []
+        
+        music.addEventListener(
+            "timeupdate", () => {
+                this.setState({
+                    currentTime: currentTime
+                })
             });
+
+        if (!this.state.isPlaying) {
+
+            this.state.clicked[0] = Songs[id].id;
+            let array = this.state.id;
+            let prev = array.slice(-2)[0];
+            array.push(this.state.clicked[0]);
+
+            if (prev === id) {
+                music.currentTime = this.state.currentTime;
+            }
+
+            music.play();
+
+            this.interval = setInterval(() => {
+                this.setState({
+                    currentTime: this.state.currentTime,
+                    clicked: this.state.clicked.concat(id),
+                    isPlaying: true,
+                    progress: Math.ceil((music.currentTime / music.duration) * 100) / 100
+                });
+            }, 100);
 
         } else {
-
             this.setState({
-                clicked: this.state.clicked.concat(id)
+                clicked: [],
+                isPlaying: false
             });
 
-            if (this.state.clicked[0] !== undefined) {
-                music.pause();
-            } else {
-                music.play();
-            }
-        }
 
+            music.pause();
+            clearInterval(this.interval);
+
+        }
     };
 
     clickedButton = id => {
-
-        music.onloadedmetadata = () => {
-            duration = music.duration.toFixed(2);
-        };
-
-        let getSongLength = () => {
-            currentTime = music.currentTime.toFixed(2);
-            // console.log("duration: " + duration);
-            // console.log("currentTime: " + currentTime);
-            if (currentTime === duration) {
-                this.setState({
-                    clicked: []
-                });
-
-            }
+      let spin;
+        if (music.currentTime === music.duration) {
+            return spin = "";
         }
-
-        music.addEventListener("timeupdate", getSongLength);
-
-        if (!spin.length) {
-
-            if (this.state.clicked[0] === Songs[id].id || !this.state.clicked[0] === undefined ) {
-                return spin = "spin";
-            }
-
+        if (this.state.clicked[0] === Songs[id].id || !this.state.clicked[0] === undefined) {
+            return spin = "spin";
         } else {
-
-            if (this.state.clicked[0] === undefined) {
-                return spin = "";
-            }
-
+            return spin = "";
         }
+    };
 
+    applyStyle = id => {
+        let transform = { transform: `scaleX(${this.state.progress})` }
+        if (this.state.clicked[0] === Songs[id].id) {
+            return transform
+        }
     };
 
     render() {
@@ -82,7 +99,9 @@ class App extends Component {
                   <div className="card" onClick={() => this.playSong(id)} id={song.id} key={song.id}>
                     <div className="container">
                       <img className="photo" src={song.image} alt={song.title} title={song.title} />
-                      <div className="button"><img className={this.clickedButton(id)} src="./images/play-pause.png" alt="play/pause"/><span>{song.title}</span></div>
+                      <div className="button"><img className={this.clickedButton(id)} src="./images/play-pause.png" alt="play/pause"/><span>{song.title}</span>
+                      <div style={this.applyStyle(id)} id="progress-bar" />
+                      </div>
                     </div>
                 </div>
                 ))}
