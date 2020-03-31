@@ -84,6 +84,12 @@ p {
   z-index: 3;
   float: left;
   width: 44px;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  touch-action: none;
+  pointer-events: none;
 }
 }
 
