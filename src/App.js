@@ -17,6 +17,7 @@ class App extends Component {
             timestamp: 0,
             duration: 0,
             progress: 0,
+            buffer: 0,
             clicked: [],
             id: []
         };
@@ -32,12 +33,11 @@ class App extends Component {
         let currentTime = music.currentTime.toFixed(2);
         music.src = Songs[id].song;
 
-        music.addEventListener(
-            "timeupdate", () => {
-                this.setState({
-                    currentTime: currentTime
-                })
-            });
+        music.addEventListener('timeupdate', () => {
+            this.setState({
+                currentTime: currentTime
+            })
+        });
 
         if (!this.state.isPlaying) {
 
@@ -57,7 +57,8 @@ class App extends Component {
                     currentTime: this.state.currentTime,
                     clicked: this.state.clicked.concat(id),
                     isPlaying: true,
-                    progress: Math.ceil((music.currentTime / music.duration) * 100) / 100
+                    progress: Math.ceil((music.currentTime / music.duration) * 100) / 100,
+                    buffer: Math.round(100 * music.buffered.end(0) / music.duration)
                 });
             }, 100);
 
@@ -67,7 +68,6 @@ class App extends Component {
                 isPlaying: false
             });
 
-
             music.pause();
             clearInterval(this.interval);
 
@@ -75,7 +75,7 @@ class App extends Component {
     };
 
     clickedButton = id => {
-      let spin;
+        let spin;
         if (music.currentTime === music.duration) {
             return spin = "";
         }
@@ -93,6 +93,13 @@ class App extends Component {
         }
     };
 
+    bufferedProgress = id => {
+        let bufferedBar = { width: `${this.state.buffer}%` }
+        if (this.state.clicked[0] === Songs[id].id) {
+            return bufferedBar
+        }
+    };
+
     render() {
         return (
             <Wrapper>
@@ -101,7 +108,9 @@ class App extends Component {
                     <div className="container">
                       <img className="photo" src={song.image} alt={song.title} title={song.title} />
                       <div className="button"><img className={this.clickedButton(id)} src="./images/play-pause.png" alt="play/pause"/><span>{song.title}</span>
+                      <div style={this.bufferedProgress(id)} id="buffer-bar">
                       <div style={this.applyStyle(id)} id="progress-bar" />
+                      </div>
                       </div>
                     </div>
                 </div>

@@ -67,6 +67,15 @@ p {
   transform: scaleX(0);
   transform-origin: center left;
   position: absolute;
+  bottom: 0px;
+  left: 0;
+}
+
+#buffer-bar {
+  border-top: 4px solid #999;
+  background-color: transparent;
+  transform-origin: center left;
+  position: absolute;
   bottom: -20px;
   left: 0;
 }
